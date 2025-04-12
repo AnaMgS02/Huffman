@@ -3,6 +3,9 @@
 #include <unordered_map>
 #include <queue>
 #include <string>
+#include <cstdint> //Para uint32_t
+#include <vector>
+#include <bitset>
 
 using namespace std;
 
@@ -71,19 +74,6 @@ HuffmanNode* buildTree(const unordered_map<char, int>& freqMap) {
 }
 
 
-//Funciones para imprimir algunos resultados
-
-// Función auxiliar para imprimir los códigos binarios (en preorden)
-void printTree(HuffmanNode* root, const string& prefix = "") {
-    if (!root) return;
-
-    if (root->ch != '\0') { // Si es una hoja, imprimir carácter y su código
-        cout << "'" << root->ch << "' (" << root->freq << ") : " << prefix << endl;
-    }
-
-    printTree(root->left, prefix + "0");
-    printTree(root->right, prefix + "1");
-}
 void printFrequencies(const unordered_map<char, int>& freq) {
     cout << "Frecuencias de caracteres:\n";
     for (const auto& pair : freq) {
@@ -97,13 +87,3 @@ void printFrequencies(const unordered_map<char, int>& freq) {
     }
 }
 
-
-// Programa principal
-int main() {
-    string filename = "cancion.txt";
-    auto frequencies = countFrequencies(filename); // Paso 1: contar frecuencias
-    HuffmanNode* root = buildTree(frequencies); // Paso 2: construir árbol
-    printFrequencies(frequencies);
-    printTree(root); // Visualizar el árbol
-    return 0;
-}

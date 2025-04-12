@@ -5,6 +5,8 @@
 #include <vector>
 #include <bitset>
 
+using namespace std;
+
 struct HuffmanNode {
     char ch;
     HuffmanNode* left;
